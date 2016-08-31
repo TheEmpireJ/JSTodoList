@@ -8,10 +8,10 @@
               font-family: sans-serif;
             }
         </style>
-        <div class="Title">
+        <div id="title">
             <h1> My To-do list </h1>
         </div>
-        <div>
+        <div id="inputArea">
             <label for="taskInput"> Enter a Task </label>
             <input type="text" id="taskInput" value="enter a task here!" />
             <input type="submit" value="Add Task"/>
@@ -20,6 +20,24 @@
 
         </div>
         <script>
+        	var taskList = document.getElementById("taskList");
+
+        	var task = document.createElement("div");
+        	var tasklabel = document.createElement("label");
+        	var taskcheckbox = document.createElement("input");
+        	taskcheckbox.type = "checkbox";
+        	tasklabel.textContent = "this is a test task 1";
+
+        	var task2 = document.createElement("label");
+        	var taskcheckbox2 = document.createElement("input");
+        	taskcheckbox2.type = "checkbox";
+        	task2.textContent = "this is a test task 2";
+
+        	task.appendChild(tasklabel);
+        	tasklabel.appendChild(taskcheckbox);
+        	task2.appendChild(taskcheckbox2);
+        	taskList.appendChild(task);
+        	taskList.appendChild(task2);
         </script>
     </body>
 </html>
