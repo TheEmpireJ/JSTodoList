@@ -1,43 +1,59 @@
 <html>
-    <head>
-        <title> This is a to-do list </title>
-    </head>
-    <body>
-        <style>
-            html {
-              font-family: sans-serif;
-            }
-        </style>
-        <div id="title">
-            <h1> My To-do list </h1>
-        </div>
-        <div id="inputArea">
-            <label for="taskInput"> Enter a Task </label>
-            <input type="text" id="taskInput" value="enter a task here!" />
-            <input type="submit" value="Add Task"/>
-        </div>
-        <div id="taskList">
+	<head>
+		<title> This is a to-do list </title>
+	</head>
+	<body>
+		<style>
+			html {
+			  font-family: sans-serif;
+			}
+		</style>
+		<div id="title">
+			<h1> My To-do list </h1>
+		</div>
+		<div id="debug"> DEBUG </div>
+		<div id="inputArea">
+			<label for="taskInput"> Enter a Task </label>
+			<input type="text" id="taskInput" value="enter a task here!" />
+			<input type="submit" id="taskSubmit" value="Add Task"/>
+			<input type="checkbox", value= />
+		</div>
+		<div id="taskList">
 
-        </div>
-        <script>
-        	var taskList = document.getElementById("taskList");
+		</div>
+		<script>
 
-        	var task = document.createElement("div");
-        	var tasklabel = document.createElement("label");
-        	var taskcheckbox = document.createElement("input");
-        	taskcheckbox.type = "checkbox";
-        	tasklabel.textContent = "this is a test task 1";
+		var taskList = document.getElementById("taskList");
+		var taskSubmit = document.getElementById("taskSubmit");
+		var taskInput = document.getElementById("taskInput");
+		taskSubmit.addEventListener("click", AddTask);
 
-        	var task2 = document.createElement("label");
-        	var taskcheckbox2 = document.createElement("input");
-        	taskcheckbox2.type = "checkbox";
-        	task2.textContent = "this is a test task 2";
+		function AddTask() {
+			var task = document.createElement("div");
+			var tasklabel = document.createElement("label");
+			var taskcheckbox = document.createElement("input");
+			taskcheckbox.type = "checkbox";
+			tasklabel.textContent = "this is a test task 1"; // TODO: Replace this with the actual task
 
-        	task.appendChild(tasklabel);
-        	tasklabel.appendChild(taskcheckbox);
-        	task2.appendChild(taskcheckbox2);
-        	taskList.appendChild(task);
-        	taskList.appendChild(task2);
-        </script>
-    </body>
+			task.appendChild(tasklabel);
+			tasklabel.appendChild(taskcheckbox);
+			taskList.appendChild(task);
+			taskcheckbox.addEventListener("click", TaskDone);
+		}
+
+		function TaskDone() {
+			if (this.checked) {
+				var debug = document.getElementById("debug");
+				var name = this.nodeName;
+				debug.innerHTML = name;
+
+				var taskLabel = this.parentNode;
+				taskLabel.style.textDecoration = "line-through" // TODO: is this more clean if I pre-define a style class and set it to that?
+			} else {
+				var taskLabel = this.parentNode;
+				taskLabel.style.textDecoration = "";
+			}
+		}
+		</script>
+	</body>
 </html>
