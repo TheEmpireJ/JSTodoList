@@ -33,19 +33,26 @@
 			var tasklabel = document.createElement("label");
 			var taskcheckbox = document.createElement("input");
 			taskcheckbox.type = "checkbox";
-			tasklabel.textContent = "this is a test task 1"; // TODO: Replace this with the actual task
+
+			var taskdelete = document.createElement("input");
+			taskdelete.type = "button";
+			taskdelete.value = "X";
+
+			tasklabel.textContent = taskInput.value;
 
 			task.appendChild(tasklabel);
 			tasklabel.appendChild(taskcheckbox);
 			taskList.appendChild(task);
+			task.appendChild(taskdelete);
 			taskcheckbox.addEventListener("click", TaskDone);
+			taskdelete.addEventListener("click", DeleteTask);
 		}
 
 		function TaskDone() {
 			if (this.checked) {
-				var debug = document.getElementById("debug");
-				var name = this.nodeName;
-				debug.innerHTML = name;
+				//var debug = document.getElementById("debug");
+				//var name = this.nodeName;
+				//debug.innerHTML = name;
 
 				var taskLabel = this.parentNode;
 				taskLabel.style.textDecoration = "line-through" // TODO: is this more clean if I pre-define a style class and set it to that?
@@ -53,6 +60,11 @@
 				var taskLabel = this.parentNode;
 				taskLabel.style.textDecoration = "";
 			}
+		}
+
+		function DeleteTask() {
+			task = this.parentNode;
+			taskList.removeChild(task);
 		}
 		</script>
 	</body>
